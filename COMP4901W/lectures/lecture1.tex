@@ -1,0 +1,31 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{Lecture1}
+\subsection{Properties of hasing:}
+\begin{enumerate}
+	\item collision-resistant: $h(x) \neq h(y)$ for $x \neq y$
+
+	\item hiding: can't find $x$ s.t.  $h(x) = y$
+\end{enumerate}
+
+\subsection{Applications:}
+\begin{enumerate}
+	\item	finding files
+	\item ledger with pointers
+	\item commitment scheme
+
+			bidding protocol: for security reasons
+			\begin{enumerate}
+				\item highest bid can be found
+				\item no player can change the bid after seeing others' bid
+				\item auditability (i.e. auditor won't change the deals)
+			\end{enumerate}
+
+			steps:
+			\begin{enumerate}
+				\item		compute $h(b_i + n_i)$ for each player and choose a random number  $n_i$ from large domain
+				\item player publishes the hash (commit)
+				\item player publish the bid and  $n_i$ for others to hash and verify (reveal)
+			\end{enumerate}
+\end{enumerate}
+\end{document}

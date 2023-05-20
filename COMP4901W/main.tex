@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}
+\usepackage{subfiles}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\rhead{\fancyplain{}{COMP 4901W Notes}}
+\lhead{\fancyplain{}{\rightmark }} 
+\cfoot{\fancyplain{}{\thepage}}
+\title{
+		{COMP4901W - Introduction to Blockchain, Cryptocurrencies and Smart Contract } \\
+		{Spring 2023}\\
+		\textbf{\large Taught by Amir Gohashady }\\
+		\textbf{\large Notes by Marcus Chan }
+	}
+	\maketitle\thispagestyle{fancy}
+\begin{document}
+\tableofcontents
+\newpage
+\subfile{lectures/lecture1}
+\newpage
+\subfile{lectures/lecture3}
+\newpage
+\addcontentsline{toc}{section}{Index}
+\printindex
+\end{document}
