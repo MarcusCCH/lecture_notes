@@ -1,0 +1,16 @@
+# Fdb version 4
+["pdflatex"] 1684522388 "week_1.tex" "week_1.pdf" "week_1" 1684522389 2
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/base/article.cls" 1667332637 20144 d5ecf0a5140c8d8d8b72cbe86e320eff ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/base/size10.clo" 1667332637 8448 c33a4e1cb35cee9b33c2b21033b73e39 ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/base/ts1cmr.fd" 1667332637 2430 8418b3f1835e588625becbcac4dbce56 ""
+  "/usr/local/texlive/2023basic/texmf-dist/tex/latex/l3backend/l3backend-xetex.def" 1681935207 31866 ab7ff58e8b7eb91f5882424abf292263 ""
+  "/usr/local/texlive/2023basic/texmf-dist/web2c/texmf.cnf" 1681165822 40967 d940221f8762fd5848760382d97d1226 ""
+  "/usr/local/texlive/2023basic/texmf-var/web2c/xetex/xelatex.fmt" 1684519490 9685538 b4939497695fa96e541aed30ddc3e11e ""
+  "/usr/local/texlive/2023basic/texmf.cnf" 1678817979 628 bde3cc671e29677eea4172140533535c ""
+  "week_1.aux" 1684522389 125 5adae54b793f9d68f67274f722baa07c "pdflatex"
+  "week_1.tex" 1684522382 101 8d0e3708a7c24481e0d5aaba4e18fbf7 ""
+  (generated)
+  "week_1.aux"
+  "week_1.log"
+  "week_1.pdf"
+  (rewritten before read)
