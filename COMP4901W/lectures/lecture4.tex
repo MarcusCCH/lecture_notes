@@ -1,0 +1,38 @@
+\documentclass[../main.tex]{subfile}
+\begin{document}
+\section{Lecture4 - Symmetric Encrpytion}
+\subsection{Definition}
+
+let a key $k \subseteq \sum^*$ which is known by both players. A knows \[
+ENC_{k} k \subseteq \sum^*\] and B knows \[
+DEC_{k}: k \subseteq \sum^*
+\] 
+
+$\forall m \in \sum^* DEC_{k}(ENC_{k}(m))$
+
+\subsection{Onetime pad}
+let encoded message $e$;
+let original message $m$;
+\[
+e = m \xor k
+.\] 
+
+\subsection{Security analysis}
+Combination = $e^{|n|}$ where n = length of key.
+Problem with multiuse: suppose we have $m_{0}$ and $m_{1}$, then eavsdropper can do: \[
+m_{0} \xor m_{1} = k \xor k \xor e_{0} \xor e_{1} 
+= e_{0} \xor e_{1}
+.\] which in turn some information is leaked \implies \text{not so secured}
+
+\subsection{Key exchange}
+Let players $p_{0}$ and $p_{1}$. Both have their own message $m_{0}$ and $m_{1}$. Both players then compute $f(m_{i})$. Our task is to compute secret $k$ such that it is easy to compute and impossible to compute using individual secrets $m_{i}$
+
+\subsection{Algorithm: Diffie-Hellman Exchange}
+\begin{enumerate}
+	\item find a large prime $p$ and $g\in \bigl\{ 0,\ldots, p-1 \bigl\}$ such that $\bigl\{ g^0, g^1, g^2, \ldots, g^{p-1} \bigl\} = \bigl\{ 0, 1, 2 , \ldots, p-1 \bigl\}$
+\item	$p_{1}$ chooses a secret $a$ from $\bigl\{ 0,1,2,\ldots,p-1 \bigl\}$. similarly for $p_{2}$
+\item $p_{1}$ computes $g^{a} \% p$ and send to $p_{2}$. Similarly for $p_{2}$
+\item $p_{1}$ computes $g^{b} *a = g^{ab}$
+\end{enumerate}
+\end{document}
+

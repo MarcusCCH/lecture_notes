@@ -1,0 +1,134 @@
+% \documentclass["../main.tex"]("subfile")
+
+% !TEX root = main
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+
+\section{Lecture 5 - Basic Number Theory and ElGamal Encryption}
+\subsection{Fermat's little theorem}
+	\begin{theorem}
+	If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$	
+\end{theorem}
+	\begin{theorem}
+		If $a$ is not divisible by  $p$, then  \[
+			a^{p-1} \equiv 1  \left( \text{a mod p} \right) 
+		.\] 
+	\end{theorem}
+	\begin{definition}[Primitive root]
+	A primitive root mod n is an integer g such that every integer relatively prime to n is congruent to a power of g mod n
+		
+	\end{definition}
+	\begin{example}[Non-primitive root]
+		let p = 5, a = 4. 
+		\begin{align*}
+			a^0 = 1 \\
+			a^1 = 4\\
+			a^2 = 16 = 1\\
+			a^3 = 4\\
+			a^4 = 1
+		\end{align*}
+	\end{example}
+	\begin{example}[Primitive root]
+		let p = 5, a = 3. There exists a cycle of length $i &| (p-1)$.
+	\begin{align*}
+		 a^0 = 1\\
+		 a^1 = 3\\
+		 a^2 = 9 = 4\\
+		 a^3 = 12 = 2\\
+		 a^4 = 6 = 1\\
+	\end{align*}
+	\end{example}
+	\subsection{Computing Primitive Roots}
+	\begin{task} P is a prime such that $\log p \ge  1024$. Find g such that $\{g^0, g^1,\ldots, g^{p-2}\} = \{1,2,\ldots,p-1\}$.
+	\end{task}
+	We cannot simply compute $g^0, g^1, g^2, \ldots$ until a cycle is found due to large P. Hence, 
+	consider $O(g)$ = length of the cycle of the powers of $g$ = smallest positive $i$ such that $g^i$  &=  i (mod p) (recall from above examples). This implies that $O(g) | p - 1$ (note: O(g) is divisible by p-1). Find all the prime factors of p-1: 
+	\[
+		p-1 =  q_{1}^{\alpha_{1}}, q_{2}^{\alpha_{2}}, \ldots, q_{r}^{\alpha_{r}} 
+	.\] (note: idk why use an equal sign)
+
+ Then, we need to prove that p-1 is indeed the minimum prime such that $O(g) = p-1$. If there is a smaller prime that satisfies the above requirement, then $p-1$ is not a primitive root, leading to contradiction. To do so, we need to consider the cases below:
+  \[
+		\begin{equation}
+		O(g) = p-1
+		\end{equation}
+		\begin{equation}
+		O(g) | \frac{p-1}{q_{1}} 
+		\end{equation}
+		\begin{align*}
+			\vdots 
+		\end{align*}
+		\begin{equation}\tag{r}
+		O(g) | \frac{p-1}{q_{r}}
+		\end{equation}
+  \] 
+	To rule out cases (2) to (r), we can simply compute $g^{\frac{p-1}{q_{i}}} &=  1  \text{(mod p)}$.
+
+	\subsection{Fast modular exponential}
+	\begin{task}
+		Compute $a^b$ mod $c$
+	\end{task}
+	\begin{lstlisting}
+	exp(a,b,c): // a^b mod c
+		ans = exp(a,b/2);
+		ans *= ans;
+		ans %= c
+		if(b%2 ==  1){
+			ans *= b;
+			ans %=c;
+		}
+		return ans;
+\end{lstlisting}
+	(note: a mod c mod c \ldots mod c &=  a mod c ?) \\ Analysis: $O(lg b)$ multiplications
+
+	\begin{theorem}
+	There is at least one primitive root $g$ for each prime	
+	\end{theorem}
+	
+	\begin{example}
+Choose g randomly and check if g is a primitive root
+	\end{example}
+	$g_{i}$ is our random choice within the cycle. Using Example 2.2, the cycle is $1\to 3\to 4\to 2\to 1$.
+	For instance, take i = 2, then we start at $g^2 = 4$, and take 2 steps at a time. The cycle will be $4\to 1\to 4\to 1\ldots$. 
+
+	\begin{theorem}
+		If $gcd(i, p-1) = 1$, where i is power, and p-1 is the length of cycle, then we can see everything in the cycle.	(note: proof is below)
+	\end{theorem}
+
+		\subsection{Modular Multiplicative Inverse}
+		Recall $a^{p-1} = 1$ (mod p). Then, \[
+			a * a^{p-2} = 1 \text{(mod p)}
+			\implies a^{p-2} = \frac{1}{a} \text{(mod p)}
+		.\] 
+		So whenever we want to divide by $a$, we can simply multiply by the \vocab{multiplicative inverse} $a^{(p-2)}$. If $gcd(a,n) \neq 1$, then a has no inverse. For example, a = 2, n = 4, there is no b such that 2b = 1 (mod 4) as 2b mod 4 will only result 0 and 2.
+	Let $d = gcd(a,b)$. If $d|a$ and $d|b$, then $d | (a-b)$ (note: not sure why this is mentioned)
+		
+	If $gcd(a,b) &=  1$, then $\exists c,d \in \zeta$ such that $c*a + d*b &=  1 \\$ 
+	\[
+\begin{equation*}
+	 ca + db = 1
+\end{equation*}	
+\begin{equation*}
+	 ca = 1 \text(mod b)
+\end{equation*}
+\begin{equation*}
+	c = a^{-1} \text(mod b)
+\end{equation*} 
+
+\]  Hence, we have found our multiplcative inverse.
+
+\subsection{El-Gamal Encrpytion}
+\begin{example} El-gamal encrpytion implementation
+	\begin{enumerate}
+		\item A generates p, g, a(secret key), $g^{a}$
+		\item B generates p, g, b(secret key), $g^{b}$
+		\item B wants to send a message m. He sends p,g,$g^{b}$ and m + $g^{b}$ to a.
+	\end{enumerate}	
+\end{example}
+
+\subsection{Public Key Crpytography}
+	Encrypt with public key, and decrpyt with secret key. (note: more will be covered next lecture)
+\end{document}

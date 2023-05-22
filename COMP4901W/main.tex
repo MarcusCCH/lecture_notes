@@ -1,10 +1,46 @@
 \documentclass[12pt]{article}
 \usepackage{subfiles}
 \usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	  language=c++,
+		  aboveskip=3mm,
+			  belowskip=3mm,
+				  showstringspaces=false,
+					  columns=flexible,
+						  basicstyle={\small\ttfamily},
+							  numbers=none,
+								  numberstyle=\tiny\color{gray},
+									  keywordstyle=\color{blue},
+										  commentstyle=\color{dkgreen},
+											  stringstyle=\color{mauve},
+												  breaklines=true,
+													  breakatwhitespace=true,
+														  tabsize=3
+														}
+\newcommand*\xor{\oplus}
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\x}{\bm{x}}
+\newcommand{\y}{\bm{y}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \fancyhf{}
-\rhead{\fancyplain{}{COMP 4901W Notes}}
+\rhead{\fancyplain{}{COMP 4901W}}
 \lhead{\fancyplain{}{\rightmark }} 
 \cfoot{\fancyplain{}{\thepage}}
 \title{
@@ -13,13 +49,18 @@
 		\textbf{\large Taught by Amir Gohashady }\\
 		\textbf{\large Notes by Marcus Chan }
 	}
-	\maketitle\thispagestyle{fancy}
 \begin{document}
+
+\maketitle\thispagestyle{fancy}
 \tableofcontents
 \newpage
 \subfile{lectures/lecture1}
 \newpage
 \subfile{lectures/lecture3}
+\newpage
+\subfile{lectures/lecture4}
+\newpage
+\subfile{lectures/lecture5}
 \newpage
 \addcontentsline{toc}{section}{Index}
 \printindex
