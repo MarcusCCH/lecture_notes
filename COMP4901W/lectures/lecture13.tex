@@ -1,0 +1,33 @@
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\section{Lecture 13 - Two-way Payment Channels}
+\subsection{One-way payment channel}
+Properties:
+\begin{enumerate}
+	\item flow in one direction(A $\to$ B)
+	\item B will sign and close the transaction
+	\item The transaction expires at time t
+	\item The channel has a fixed capacity
+	\item only two transactions (base deposit, final transaction) are added to the blockchain. Thus, only two Tx fees are paid for k payments
+\end{enumerate}
+\subsection{Two-way payment channel}
+Problem of cheating:
+ B published $T_{x_{i}}$ but $\exists  T_{x_{j}} j > i$ that pays less to the player, meaning the B is not honouring the refund that owes to A.
+Solution: Change the protocol such that B has to sign the index of every transaction. 
+Thus, cheating now means that B's signature is on an index > current transaction's index
+
+4 channels, 2 each one-way channel
+Scenario:
+\begin{enumerate}
+	\item A pays 75 to B. A pay 75 in c1  (c1's capacity = 25)
+	\item B pays 80 to A. B refunds 75 in c1, and pay 5 in c2 (c1's capacity = 100, c2's capacity = 95)
+	\item A pays 50 to B. A refunds 5 in c2, and pay 45 in A(c1's capacity = 55, c2's capacity = 100)
+\end{enumerate}
+\end{document}
+
+

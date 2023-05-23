@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\section{Lecture 14 - Escrows and Ethereum-like Smart Contracts}
+\subsection{Escrow}
+Distrustful situation: A doesnt trust B, then item first. B doesnt trust A, then payment first.
+\subsubsection{Awful solution} Use a trusted third-party C. Suppose C sides with P $\in \{A,B\}$, then C and P create the contract and each get 50 BTC, sign it and publish it. 
+This leads to the bribery problem. 
+\subsubsection{Another attempt}
+The money is locked when disagreement happens. Problem: extortion.
+\subsubsection{Solution: win-win or lose-lose}
+Change the deposit. If both party agree that the transaction happens, then A pay 200 to B. If both party agree that the transaction did not happen, then both A got refund 100. If disagreement happens, then both do not have any money. 
+\subsection{Script}
+Why limited?
+\begin{enumerate}
+	\item complete and unambiguous semantics (e.g. cpp overflow then compiler decide handling)
+	\item complete in $O(1)$ time
+	\item miner white-list script
+\end{enumerate}
+Transactions can deploy the program (smart contract) and invoke functions of a previously-deployed smart contract (pointer to the contract, function name, parameters)
+Every contract can receive and manage money.
+\end{document}

@@ -1,0 +1,21 @@
+
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\begin{document}
+\section{Lecture 12 - Centralization and Scripts}
+\subsection{51\% attack}
+Imagine a malicious miner with more than half of the hash power. Then, he can revert all the honest minings that follow the protocol: adding to the consensus branch, by keep on adding to the new fork and lengthen it.
+\subsection{Scripts}
+Scripts are to impose certain requirements to choosing blocks
+Suppose two players: A and B. They have a phone call and 1 BTC for each transaction. A and B do not trust each other. Then, we can use the following protocol, which require signatures from both A and B or signature from A only when block number > C (just to prevent the case where B doesnt sign, and A lost 100-i BTC)
+\begin{enumerate}
+	\item create first despoit (input: 100, output:100)
+	\item for each minute i, A pays i BTC to Bob, 100 - i BTC to herself.
+	\item B signs the last contract and pending to be mined.
+\end{enumerate}
+\end{document}

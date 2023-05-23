@@ -1,0 +1,38 @@
+
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\begin{document}
+\section{Lecture 11 - Mining rewards and forks}
+\begin{definition}[Transaction fee]
+ $\sum$ input - $\sum$ output
+\end{definition}
+Why should a miner mine a non-empty block? Miners gain transaction fees
+after mining blocks. The difference $\sum$ inputs -  $\sum$ outputs is paid to the miner. 
+Thus, if you want to add your transaction earlier, pay more transaction fee to lure miners.
+\subsection{Problem with forks}
+The transactions that are not in consensus chains are neglected and miners get no reward.   
+Hence, miners are aware of the existence of forks, and will put the transactions in the chain that is less likely to be a consensus branch. This doesn't create the double-spending problem as the memory pool will only check the same chain. Besides, after being mined, the transactions in conflict will be removed from the memory pool (Lecture 10). 
+\subsection{Double spending attack}
+Scenario: bit-coin based vending machine
+\subsubsection{First atack: Immediate double-spending}
+\begin{enumerate}
+	\item create one transaction $T_{1}$, with 1 BTC as the input, 0.99 as the output, and then receive the product
+	\item create another transaction $T_{2}$, with 1 BTC as the input, 0.95 BTC as the output, that gives money to herself, immediately, which creates a fork.
+	\item if the miner includes $T_{2}$ in a block, which the transaction fee is 0.05BTC > 0.01 BTC, then the attack was successful, as the player can get both the money and the product.
+\end{enumerate}
+	Soln: Wait for $T_{1}$ to be mined
+	\subsubsection{Second attack: Double-spending in a fork}
+	Goal: Resolve and mine all the honest transactions. Problem: some blocks can be reverted (i.e. $T_{1}$ ) and removed. Soln: Wait for confirmation(6 blocks added after the block). Problem to soln: need to wait for an hour (not friendly to immediate transaction)
+	\subsection{Adjusting difficulty}
+	Let $d$ be the constant that $h(B) < d$ where B is the block. The probability of success is $d / 2^{256}$ (note: 256 bits is the max size of each block so as to uphold the latency rate)
+	Also, we can ask the miners to check the timestamp such that if the timestamp is too old, then ignore it. (remark: the more far away, the longer the transaction chain, the harder it is to find a nonce)  
+
+	Find the average mining time $\mu$. If $\mu > 10 $, then decrease d and increase difficulty. Else, increase d and decrease difficulty. 
+\end{document}
+
+
