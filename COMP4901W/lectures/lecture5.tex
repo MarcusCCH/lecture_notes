@@ -1,6 +1,4 @@
-% \documentclass["../main.tex"]("subfile")
-
-% !TEX root = main
+\documentclass[../main.tex]{subfile}
 \begin{document}
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}[theorem]
@@ -50,7 +48,7 @@
 		p-1 =  q_{1}^{\alpha_{1}}, q_{2}^{\alpha_{2}}, \ldots, q_{r}^{\alpha_{r}} 
 	.\] (note: idk why use an equal sign)
 
- Then, we need to prove that p-1 is indeed the minimum prime such that $O(g) = p-1$. If there is a smaller prime that satisfies the above requirement, then $p-1$ is not a primitive root, leading to contradiction. To do so, we need to consider the cases below:
+ Then, we need to prove that p-1 is indeed the minimum prime such that $O(g) = p-1$. If there is a smaller prime that satisfies the above requirement, then it leads to the contradiction setting that $O(g)$ is the smallest positive $i$, hence $p-1$ is not a primitive root. To do so, we need to consider the cases below:
   \[
 		\begin{equation}
 		O(g) = p-1
@@ -65,7 +63,7 @@
 		O(g) | \frac{p-1}{q_{r}}
 		\end{equation}
   \] 
-	To rule out cases (2) to (r), we can simply compute $g^{\frac{p-1}{q_{i}}} &=  1  \text{(mod p)}$.
+	To rule out cases (2) to (r), we can simply compute $g^{\frac{p-1}{q_{i}}} \text{(mod p)}$. If it equals to 1, then g is not the smallest positive i but the prime factor q, hence g is not the primitive root.
 
 	\subsection{Fast modular exponential}
 	\begin{task}
@@ -106,16 +104,16 @@ Choose g randomly and check if g is a primitive root
 		So whenever we want to divide by $a$, we can simply multiply by the \vocab{multiplicative inverse} $a^{(p-2)}$. If $gcd(a,n) \neq 1$, then a has no inverse. For example, a = 2, n = 4, there is no b such that 2b = 1 (mod 4) as 2b mod 4 will only result 0 and 2.
 	Let $d = gcd(a,b)$. If $d|a$ and $d|b$, then $d | (a-b)$ (note: not sure why this is mentioned)
 		
-	If $gcd(a,b) &=  1$, then $\exists c,d \in \zeta$ such that $c*a + d*b &=  1 \\$ 
+	If $gcd(a,b) &=  1$, then $\exists c,d \in \Z$ such that $c*a + d*b &=  1 \\$ 
 	\[
 \begin{equation*}
 	 ca + db = 1
 \end{equation*}	
 \begin{equation*}
-	 ca = 1 \text(mod b)
+	ca = 1 \text{(mod b)}
 \end{equation*}
 \begin{equation*}
-	c = a^{-1} \text(mod b)
+	c = a^{-1} \text{(mod b)}
 \end{equation*} 
 
 \]  Hence, we have found our multiplcative inverse.
@@ -125,7 +123,9 @@ Choose g randomly and check if g is a primitive root
 	\begin{enumerate}
 		\item A generates p, g, a(secret key), $g^{a}$
 		\item B generates p, g, b(secret key), $g^{b}$
-		\item B wants to send a message m. He sends p,g,$g^{b}$ and m + $g^{b}$ to a.
+		\item B wants to send a message m. He sends $g^{b}$ and m + $g^{ab}$ to A.
+		\item A computes $g^{ab}$ = $(g^{b})^{a}$ 
+		\item A computes m = e - $g^{ab}$
 	\end{enumerate}	
 \end{example}
 

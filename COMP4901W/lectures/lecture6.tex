@@ -1,0 +1,40 @@
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\begin{document}
+\section{Lecture 6 - The RSA Cryptosystem}
+A key pair (e, d) where e is the public key and d is the private key. Choose also n $\in$ \N. $\forall  m Dec_{d}(Enc_{e}(m)) = m$
+\begin{equation}
+	Enc_{e}(m) = m^{e} \text{mod n}
+\end{equation}
+\begin{equation}
+	Dec_{d}(m') = (m')^{d} \text{mod n}
+\end{equation}
+\begin{equation}
+	Dec_{d}(Enc_{e}(m)) = m^{ed} = m \text{(mod n)}
+\end{equation}
+\subsection{Key generation - failed attempt}
+What happens if n is a prime?
+\[
+	\forall m  m^{ed} = m \iff \forall m^{ed-1} = 1
+.\] 
+Then we choose e,d s.t. $(n-1)| (ed-1) \\\implies ed-1 = 0 \text{(mod n-1)}\iff ed = 1 \text{(mod n-1)} \\ \implies d = e^{-1}$ 
+\subsubsection{Security analysis:}
+Eavsdropper can see $n, e, m^{e}$, which he can compute $d = e^{-1} \text{(mod n-1)}$. He can decrpyt the message to be $m^{ed}$
+
+\subsection{Key generation - successful attempt}
+\begin{enumerate}
+	\item Choose two large prime: p,q and n = p * q
+	\item Generate d,e s.t. $\forall m m^{ed} = m$ (mod n), which is the same as mod p and mod q. $\iff$ $\forallm m^{ed-1} = 1$ (mod p or mod q)
+	\item Make sure $l =  ed - 1$ is the multiple of both $p - 1$ and $q - 1$ \[
+	l = LCM(p-1, q-1)
+	.\] 
+\end{enumerate}
+\subsubsection{Security analysis}
+Similar to above, eavsdropper see e,n,$m^{e}$, $d = e^{-1}$ (mod l). He cannot find p,q,l = lcm(p-1,q-1), d,m, meaning he cannot decrpyt the message
+\end{document}
+
+

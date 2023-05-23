@@ -1,0 +1,40 @@
+
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\begin{document}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\section{Lecture 10 - Bitcoin and Proof of Work}
+\subsection{Decentralized ledger}
+\begin{definition}[Decentralization]
+Every node has the same permissions	
+\end{definition}
+How to extend the blockchain through \textbf{mining} while preserving consensus for honest nodes?
+\subsection{Proof of work}
+The first person to solve the puzzle adds the next block
+Criteria for the puzzle:
+\begin{enumerate}
+	\item hard to solve
+	\item easy to verify
+	\item impossible to steal
+\end{enumerate}
+\begin{definition}[Nonce]
+	A number chosen by the miner
+\end{definition}
+Set the puzzle to be $h(B)$ is small such that for example $h(B) = 00\ldots_{60}\ldots00$.
+The invert the hash function, we can only try each and every nonce, which has a probability of $(\frac{1}{2})^{60}$
+\subsection{Viewpoint of nodes}
+A node keeps tack of both blockchain and mempool(ready to push to blockchain). If the node hears a new transaction, do the following verifications:
+\begin{enumerate}
+	\item signatures
+	\item inputs $\ge $ outputs
+	\item no double-spending in blockchain $\cup$ memory pool 
+\end{enumerate}
+if the transaction is valid, then send the transaction to all neighbours and add it to the mempool.
+If a block B is valid, then add the block to the blockchain and clear the transactions in the block and transactions in conflict with B from the memory pool.
+\begin{definition}[Consensus chain]
+The longest chain is the consensus chain because the miners get to choose the chain to extend on. Then, even if forks exist, up to certain point, there will always be a longer chain which becomes the consensus chain.	
+\end{definition}
+\end{document}

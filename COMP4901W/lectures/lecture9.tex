@@ -1,0 +1,36 @@
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\begin{document}
+\section{Lecture 9 - Centralized Ledger}
+Let there is a central bank B to keep track of the history of transactions \textbf{done by the users} to prevent the problem of double spending. Let block be a sequence(\textbf{Merkle tree}) of transactions of size at most b, which will be \textbf{created and published by the bank}. Problem:
+\begin{enumerate}
+	\item How to know if $b_{i}$ was created by the bank? Soln: The bank signs every block
+	\item How to ensure the bank does not change the history?
+\end{enumerate}
+\subsection{Viewpoint of a node}
+\begin{enumerate}
+	\item Case 1: Receive a transaction. Steps:
+		\begin{enumerate}
+			\item Verify if it is valid
+			\item input $\ge$  output
+			\item No double spending: input has happened before in the block chain
+			\item Propagate to the neighbours
+		\end{enumerate}
+	\item Case 2: Receive a block $B_{i}$: Steps:
+		\begin{enumerate}
+			\item Verify signature of the bank
+			\item Validate every transactions in $B_{i}$ 
+			\item If $B_{i}$ is valid, add it to my blockchain and send to neighbours
+		\end{enumerate}
+\end{enumerate}
+\subsection{Viewpoint of the bank}
+\begin{enumerate}
+	\item Maintain a copy of the blockchian
+	\item Maintain a new block
+	\item Listen for transactions
+\end{enumerate}
+\end{document}

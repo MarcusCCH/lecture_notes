@@ -1,0 +1,28 @@
+\documentclass[../main.tex]{subfile}
+\usepackage{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}[theorem]
+\newtheorem{task}{Task}
+\newtheorem{definition}{Definition}
+\begin{document}
+ \section{Lecture 7 - Digital Signatures}
+ \subsection{Homomorphic property of RSA}
+ \[
+ Enc_{e}(m_{1}) * Enc_{e}(m_{2}) =  Enc_{e}(m_{1} * m_{2})
+ .\] 
+ \subsection{Digital signature}
+ A signature function: $sgn_{d}$: $\sum_{}^{*}$ $\to $ $\sum_{}^{*}$.
+ A verification function: $ver_{e}$: $\sum_{}^{*}$ *  $\sum_{}^{*}$ $\to \{0,1\}$  or  $\overline{ver_{e}}$: $\sum_{}^{*}$ $\to$ $\sum_{}^{*}$
+ if eavsdropper knows m,e, sgn, ver, he should not be able to compute $sgn_{d}(m)$ without d
+ \subsection{RSA signature}
+ \begin{enumerate}
+ 	\item Compute RSA keys: Find two large primes p,q. $n = p * q$. Find e,d, s.t. $\forall m m^{ed} = m$ (mod n-1)
+	\item Assume everyone knows n and e
+	\item $p_{1}$ sign the message with $sgn_{d}$ 
+	\item $p_{2}$ verify the message with $\overline{ver_{e}}$ s.t.	$\overline{ver_{e}} = m$
+ \end{enumerate}
+ \subsubsection{Security analysis}
+ Eavsdropper knows m, $m^{d}$, n, e. He cannot forge a signature meaning he doesn't know d s.t. he can compute $m'^{d}$
+ Also, even with the homomorphic property, $sgn_{d}(m_{1}) * sgn_{d}(m_{2}) =  sgn_{d}(m_{1} * m_{2})$ which doesn't make sense
+
+\end{document}
