@@ -1,15 +1,17 @@
 \documentclass[../main.tex]{subfile}
+
 \begin{document}
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}[theorem]
 \newtheorem{task}{Task}
 \newtheorem{definition}{Definition}
-
 \section{Lecture 5 - Basic Number Theory and ElGamal Encryption}
 \subsection{Fermat's little theorem}
+\begin{tcolorbox}
 	\begin{theorem}
 	If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$	
 \end{theorem}
+\end{tcolorbox}
 	\begin{theorem}
 		If $a$ is not divisible by  $p$, then  \[
 			a^{p-1} \equiv 1  \left( \text{a mod p} \right) 

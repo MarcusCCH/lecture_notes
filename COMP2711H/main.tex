@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}
+\usepackage{subfiles}
+\usepackage{fancyhdr}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{ {./images/} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\mdfdefinestyle{mdbluebox}{%
+	roundcorner = 10pt,
+	linewidth=1pt,
+	skipabove=12pt,
+	innerbottommargin=9pt,
+	skipbelow=2pt,
+	nobreak=true,
+	linecolor=blue,
+	backgroundcolor=TealBlue!5,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries\color{MidnightBlue},
+	mdframed={style=mdbluebox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt}
+]{thmbluebox}
+
+\mdfdefinestyle{mdredbox}{%
+	linewidth=0.5pt,
+	skipabove=12pt,
+	frametitleaboveskip=5pt,
+	frametitlebelowskip=0pt,
+	skipbelow=2pt,
+	frametitlefont=\bfseries,
+	innertopmargin=4pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+	linecolor=RawSienna,
+	backgroundcolor=Salmon!5,
+}
+\declaretheoremstyle[
+	headfont=\bfseries\color{RawSienna},
+	mdframed={style=mdredbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{thmredbox}
+
+\mdfdefinestyle{mdblackbox}{%
+	linewidth=0.5pt,
+	skipabove=12pt,
+	frametitleaboveskip=5pt,
+	frametitlebelowskip=0pt,
+	skipbelow=2pt,
+	frametitlefont=\bfseries,
+	innertopmargin=4pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+	linecolor=black,
+	backgroundcolor=RedViolet!5!gray!5,
+}
+\declaretheoremstyle[
+	mdframed={style=mdblackbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{thmblackbox}
+
+
+\declaretheorem[style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
+\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
+\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
+\declaretheorem[%
+style=thmblackbox,name=Algorithm,sibling=theorem]{algo}
+
+\mdfdefinestyle{mdgreenbox}{%
+	skipabove=8pt,
+	linewidth=2pt,
+	rightline=false,
+	leftline=true,
+	topline=false,
+	bottomline=false,
+	linecolor=ForestGreen,
+	backgroundcolor=ForestGreen!5,
+}
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+	bodyfont=\normalfont,
+	spaceabove=2pt,
+	spacebelow=1pt,
+	mdframed={style=mdgreenbox},
+	headpunct={ --- },
+]{thmgreenbox}
+
+\theoremstyle{theorem}
+\declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox]{remark}
+
+\theoremstyle{definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{fact}[theorem]{Fact}
+
+
+\lstset{frame=tb,
+	  language=c++,
+		  aboveskip=3mm,
+			  belowskip=3mm,
+				  showstringspaces=false,
+					  columns=flexible,
+						  basicstyle={\small\ttfamily},
+							  numbers=none,
+								  numberstyle=\tiny\color{gray},
+									  keywordstyle=\color{blue},
+										  commentstyle=\color{dkgreen},
+											  stringstyle=\color{mauve},
+												  breaklines=true,
+													  breakatwhitespace=true,
+														  tabsize=3
+														}
+\newcommand*\xor{\oplus}
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\bful}[1]{\textbf{\underline{#1}}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\x}{\bm{x}}
+\newcommand{\y}{\bm{y}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\rhead{\fancyplain{}{COMP 2711H}}
+\lhead{\fancyplain{}{\rightmark }} 
+\cfoot{\fancyplain{}{\thepage}}
+\title{
+		{COMP2711H - Honours discrete mathematics} \\
+		{Spring 2023}\\
+		\textbf{\large Notes by Marcus Chan }
+	}
+\begin{document}
+
+\maketitle\thispagestyle{fancy}
+\tableofcontents
+\newpage
+\subfile{lectures/lecture1}
+\newpage
+\subfile{lectures/lecture2}
+% \newpage
+% \section{Index}
+% \begin{example}
+% 	Let $\left( G=(V,E),s,t,c \right) $ be a flow network. Let $f$ be a flow in this network. Then there is a collection of feasible flows  $f_1,f_2,\ldots f_k$ and a collection of $s-t$ paths $p_1,\ldots,p_k$.
+% \end{example}
+% \begin{lemma}
+% 	Let $\left( G=(V,E),s,t,c \right) $ be a flow network. Let $f$ be a flow in this network. Then there is a collection of feasible flows  $f_1,f_2,\ldots f_k$ and a collection of $s-t$ paths $p_1,\ldots,p_k$.
+% \end{lemma}
+% \begin{algo}
+% 	Let $\left( G=(V,E),s,t,c \right) $ be a flow network. Let $f$ be a flow in this network. Then there is a collection of feasible flows  $f_1,f_2,\ldots f_k$ and a collection of $s-t$ paths $p_1,\ldots,p_k$.
+% \end{algo}
+% \begin{remark}
+% 	Let $\left( G=(V,E),s,t,c \right) $ be a flow network. Let $f$ be a flow in this network. Then there is a collection of feasible flows  $f_1,f_2,\ldots f_k$ and a collection of $s-t$ paths $p_1,\ldots,p_k$.
+% \end{remark}
+
+\addcontentsline{toc}{section}{Index}
+
+\end{document}
+

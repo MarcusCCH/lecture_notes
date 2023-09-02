@@ -1,0 +1,33 @@
+\documentclass[../main.tex]{subfile}
+\begin{document}
+\section{Lecture 2 - Predicate Logic (First-order logic)}
+\subsection{Predicates}
+\begin{definition}[Predicate] A predicate is a statement that may be true or false depending on its variables
+\end{definition}
+\subsection{Quantifiers}
+\begin{definition}[Universal qunatification] $\forall x P(x)$
+\end{definition}
+\begin{definition}[Domain]
+	The set of all possible values of a variable. \bful{Must be defined} when using quantification.	
+\end{definition}
+\begin{definition}[Existential quantification] $\exists  x P(x)$ (at least one x in domain)
+	
+\end{definition}
+\subsection{Logical equivaleces}
+\begin{fact} 
+$\forall x P(x) \lor Q(x) \not\equiv \forall x P(x) \lor \forall x Q(x) $	
+\end{fact}
+\begin{fact} 
+$\exists  x P(x) \land Q(x) \not\equiv \exists  x P(x) \lor \exists  x Q(x) $	
+\end{fact}
+
+\subsection{Negating Quantified Expressions}
+\[
+\neg \forall x P(x) \equiv \exists x \neg P(x)
+.\] 
+\[
+\neg \exists x Q(x) \equiv \forall x \neg Q(x)
+.\] 
+\subsection{Nested quantifiers}
+\end{document}
+
